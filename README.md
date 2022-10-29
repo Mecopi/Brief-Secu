@@ -9,6 +9,8 @@
     - Politique sécurité des mots de passe 
 - Protocoles
     - HTTP
+        - Faille relatives : 
+            - MITM (Man In The Middle)
     - HTTPS
         - TLS
         - SSL 
@@ -83,3 +85,21 @@ Dans le cadre de cette strategie, la politique des mots de passes sera la suivan
 - Un tente d'attente de 2 minutes par tranche de 3 tentatives de connexions échouées.
 - Une stratégie de recouvrement par le biais d'un lien envoyé par mail afin de regénerer un mot de passe.
  
+# Sécurité par les protocoles
+
+## HTTP
+
+Le protocol HTTP est un protocol d'échange de donnée s'insérant sur la couche réseau du modèle OSI.<br>
+HTTP signifie HyperText Transfer Protocol ou en français Protocol de Transfert d'HyperText.<br>
+Nous n'utiliserons pas ce protocol en raison de son manque de protection lros du transfer d'information.<br>
+Ce protocol étant soumis à une faille de sécurité majeure (MITM) il sera préférable d'utiliser le protocol HTTPS.<br>
+
+### MITM (Man In The Middle)
+
+L'attaque dites de Man In The Middle ou literallement L'homme du millieu est une attaque qui consiste à se placer entre les deux machines communiquantes entre elles tel qu'un Client et un Serveur par exemple afin de récupérer les échanges d'informations émises et reçues.<br><br>
+Prenons un exemple concret: 
+![](Images/MITM_Basic.png)<br>
+Dans cet exemple l'utilisateur ne s'est même pas rendu compte qu'un attaquant avait récupéré ses informations de connexion à son site favori.<br>
+Tout comme le serveur ne s'est rendu compte de rien, l'attaquant n'étant qu'un émetteur de plus à qui répondre.<br>
+Avec l'attaque par MITM il est possible d'aller bien plus loin, par exemple falsifier le contenu renvoyé par le site Web afin de faire éxécuter à l'utilisateur du code malveillant pouvant avoir des impacts sur d'autres sites par le biais d'ajout de requêtes silencieuses par exemple.<br>
+L'attaque par MITM est réellement dangereuse et mériterait une documentation à part entière comme de nombreuses failles dont nous allons parler dans cette documentation.
