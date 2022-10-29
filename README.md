@@ -65,4 +65,9 @@ C'est à dire que chaque partie du système ou de l'application dont l'expositio
 <br>
 Par exemple : <br>
 Lors-ce que nous développerons pour le Web, nous pourrions réduire la surface d'attaque en n'exposant que les ports<br>
-80, 443, 20 ( ou 21) afin que le système ne soit exposées sur le réseau que par le biais de ces ports, il n'est pas besoin
+80, 443, 20 ( ou 21) afin que le système ne soit exposés sur le réseau que par le biais de ces ports.
+
+## Moidre privilèges
+
+Le principe de moindre privilèges consiste à restreindre les permissions d'un élément aux permissions strictement nécessaire à son bon fonctionnement.<br>
+Par exemple, si un composant doit simplement lire un flux d'informations, nous autoriserons ce composant à lire mais sans lui permettre d'écrire dans les flux qu'il sera amené à lire.<br>
