@@ -13,7 +13,6 @@
             - MITM (Man In The Middle)
     - HTTPS
         - TLS
-        - SSL 
     - HSTS 
 - Sécurité navigateur
     - SOP 
@@ -103,3 +102,20 @@ Dans cet exemple l'utilisateur ne s'est même pas rendu compte qu'un attaquant a
 Tout comme le serveur ne s'est rendu compte de rien, l'attaquant n'étant qu'un émetteur de plus à qui répondre.<br>
 Avec l'attaque par MITM il est possible d'aller bien plus loin, par exemple falsifier le contenu renvoyé par le site Web afin de faire éxécuter à l'utilisateur du code malveillant pouvant avoir des impacts sur d'autres sites par le biais d'ajout de requêtes silencieuses par exemple.<br>
 L'attaque par MITM est réellement dangereuse et mériterait une documentation à part entière comme de nombreuses failles dont nous allons parler dans cette documentation.
+
+## HTTPS
+
+Le protocol HTTPS est une version améliorée du protocol HTTP en terme de sécurité.<br>
+HTTPS signifie HyperText Transfer Protcol Secure ou en français Protocol Sécurisé de Transfert d'HyperText.<br>
+Ce protocol se repose en réalité sur un autre protocol afin de sécurisé l'échange de données, le protocol TLS.<br>
+Nous utiliserons ce protocol d'échange de données car il n'est plus vulnérable aux attaques MITM.<br>
+
+### TLS 
+
+Le protocol TLS est un protocol visant à encapsuler l'information et à la chiffrer par le biais d'opérations cryptographiques.<br>
+TLS signifie Transport Layer Security ou en français Sécurité de la Couche de Transport.<br>
+TLS permet de chiffrer les informations émises dans un contexte d'échange type Client -> Serveur afin d'empêcher la compromission des informations transitantes sur la couche réseau.<br>
+Dans le cadre de l'utilisation de TLS le serveur est nécessairement authentifié, alors qu'il existe certaines fonctions permettant l'identification du client si besoin est.<br>
+Notons aussi que TLS est l'une des solutions préférées dans la protection de flux réseau.<br>
+Lors de l'utilsation de TLS, les messages sont généralement transmis par l'intermediaire du protocol TCP.<br>
+<a href="https://www.ssi.gouv.fr/uploads/2020/03/anssi-guide-recommandations_de_securite_relatives_a_tls-v1.2.pdf">Afin d'en apprendre beaucoup plus sur TLS</a>
