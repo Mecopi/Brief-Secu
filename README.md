@@ -50,7 +50,7 @@
     - Audit 
     - Bug Bounty 
 
-# Principes de sécurités
+# Principes de sécurité
 
 ## Défense en profondeur
 
@@ -71,3 +71,15 @@ Lors-ce que nous développerons pour le Web, nous pourrions réduire la surface 
 
 Le principe de moindre privilèges consiste à restreindre les permissions d'un élément aux permissions strictement nécessaire à son bon fonctionnement.<br>
 Par exemple, si un composant doit simplement lire un flux d'informations, nous autoriserons ce composant à lire mais sans lui permettre d'écrire dans les flux qu'il sera amené à lire.<br>
+
+## Politique des mots de passe
+
+Une politique de mot de passe est un ensemble de recommandations à suivre afin d'établir une certaines sécurié concernant les mots de passe possiblement entrés par les utilisateurs.<br>
+Dans le cadre de cette strategie, la politique des mots de passes sera la suivante : 
+
+- Une longueur comprise entre 8 et 80 caractères.
+- Une composition (A-z, 0-9, caractères spéciaux sans exception) des mots de passe.
+- La vérification de la robustesse du mot de passe entré en temps réel par la vérification des facteurs ci-dessus.
+- Un tente d'attente de 2 minutes par tranche de 3 tentatives de connexions échouées.
+- Une stratégie de recouvrement par le biais d'un lien envoyé par mail afin de regénerer un mot de passe.
+ 
