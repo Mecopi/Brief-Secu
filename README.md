@@ -228,3 +228,9 @@ Une session n'est ni plus ni moins régie par le temps d'expiration d'un cookie 
 Lors de la connexion d'un utilisateur, un jeton avec une date d'expiration lui est transmis, l'utilisateur pourra quitter et revenir sur le site sans avoir besoin de se connecter tant que son jeton n'a pas expiré, cependant, une fois le jeton révolu, l'utilisateur devra se ré-authentifier afin d'obtenir un nouveau jeton.<br>
 
 Dans le cadre de ce projet, les sessions seront à temps limité, les sessions expireront après 1 heure.
+
+## UUID (Unique User ID)
+
+Un UUID est un identifiant unique délivré par le serveur pour chaque utilisateur ayant besoin d'un enregistrement en base de donnée.<br>
+A l'inverse d'un simple ID pouvant être composé de caractères numériques allant de 0 à 9, l'UUID se compose d'un ensemble de caractère litteraux et numérique comme suit : 863cebfd-7875-45af-9e83-cd1e43aa1be4 <br>
+De cette façon, il n'est pas envisageable qu'un attaquant puisse faire appelle à la base de donnée afin d'en récupérer les informations par le biais du champ 'ID' puis-ce qu'il faudrait être incroyablement chanceux pour tomber sur un UUID identique.<br>
