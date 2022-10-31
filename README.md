@@ -32,7 +32,8 @@
                     - Clickjacking 
                     - Requêtes silencieuses 
                 - CSRF 
-                - SQLI 
+                - SQLI
+                    - ORM
                 - Point d'eau 
 - Sécurité backend
     - RBAC 
@@ -269,3 +270,20 @@ Il est très important de développer avec précautions afin d'éviter les faill
 ## L'attaque par CSRF (Cross Site Request Forgery)
 
 L'attaque par CSRF ou Forge de Requête par site interposés est un type d'attaque semblable à une attaque par XSS, le but de l'attaque par CSRF est enfaite d'executer des actions sur un site Web légitime à l'insu de l'utilisateur, poster un message sur un forum par exemple, il est aussi possible de récupérer les informations de connexion de l'utilisateur par le biais d'attaque CSRF.<br>
+
+## La faille SQLi (Injection SQL)
+
+La faille SQLi (pour SQL Injection) est un type de faille permettant d'executer des requêtes SQL non permises.<br>
+Prennons un exemple d'exploitation de faille SQLi :<br>
+Un attaquant se trouve sur une page de connexion d'un site Web vulnérable à l'injection SQL<br>
+Il tape un nom d'utilisateur aléatoire et tape un mot de passe tel que celui-ci : ' OR 1=1 .<br>
+Le serveur voit simplement le mot de passe et l'interprete comme suit : ".. WHERE USERAME='nom utilisateur bidon' AND PASSWORD='' OR 1=1".<br>
+Le serveur execute la requête SQL et donne l'accès au premier compte contenu dans la base de donnée, l'attaquant est donc connecté sur le compte d'un utilisateur qui est dans 99% des cas le compte d'un administrateur.<br>
+
+Il existe des déclinaisons à l'injection SQL, comme la suppression de toutes les données contenues de la base de données par l'interpolation d'un ';' afin de faire exécuter toutes les requêtes envisageables à la base de donnée.<br>
+Afin de palier à ce type de faille, il existe des outils tels que des ORM permettant d'endiguer ce type de faille.<br>
+
+# ORM (Object Relational Mapping)
+
+Un ORM peut permettre de préparer des paternes de requêtes et de préparer des requêtes lors de leur execution en base de données, ce qui permet de ne plus insérer de caractère d'échappement dans les requêtes, de cette façons, chaque informations sera écrite AS DATA et non plus AS LITTERAL et ne permettra plus l'execution de code SQL arbitraire.<br>
+Dans le pire des cas avec un ORM bien configuré mais sans la gestion d'erreur relative, la réponse de la base de donnée sera une succession d'erreur et le script plantera.<br>
