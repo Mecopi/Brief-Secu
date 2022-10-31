@@ -283,7 +283,12 @@ Le serveur execute la requête SQL et donne l'accès au premier compte contenu d
 Il existe des déclinaisons à l'injection SQL, comme la suppression de toutes les données contenues de la base de données par l'interpolation d'un ';' afin de faire exécuter toutes les requêtes envisageables à la base de donnée.<br>
 Afin de palier à ce type de faille, il existe des outils tels que des ORM permettant d'endiguer ce type de faille.<br>
 
-# ORM (Object Relational Mapping)
+## ORM (Object Relational Mapping)
 
 Un ORM peut permettre de préparer des paternes de requêtes et de préparer des requêtes lors de leur execution en base de données, ce qui permet de ne plus insérer de caractère d'échappement dans les requêtes, de cette façons, chaque informations sera écrite AS DATA et non plus AS LITTERAL et ne permettra plus l'execution de code SQL arbitraire.<br>
 Dans le pire des cas avec un ORM bien configuré mais sans la gestion d'erreur relative, la réponse de la base de donnée sera une succession d'erreur et le script plantera.<br>
+
+## Principe du point d'eau
+
+Le principe d'attaque par point d'eau consiste à infecter des machines par voie de RAT (Remote Admin Tool / Remote Access Trojan) par le biais de failles diverses telles que peuvent l'être des failles XSS dans le cadre d'un point d'eau dont l'infiltration se ferais pas le Web.<br>
+Le but du point d'eau est d'attendre qu'une proie morde à l'hameçon afin de l'infecter et d'infecter tout son entourage numérique par le biais de diverses moyens, mails, infiltration au niveau du réseau, le but était bien evidemment d'infecter un maximum de machines afin de récupérer de l'information ou bien simplement d'ériger un BotNet, il existe tout un tas de déclinaison d'utilisation de point d'eau, de façons de faire, de raison d'utilisation.<br>
