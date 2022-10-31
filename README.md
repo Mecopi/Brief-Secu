@@ -21,15 +21,19 @@
     - CSP 
     - SRI 
     - Sanitisation 
-    - Cookies 
-    - Authentification 
-        - Failles relatives :
-            - XSS 
-                - Clickjacking 
-                - Requêtes silencieuses 
-            - CSRF 
-            - SQLI 
-            - Point d'eau 
+    - Sécurisation authentification
+        - Cookies 
+        - JWT
+        - Token
+        - Session
+        - UUID
+            - Failles relatives :
+                - XSS 
+                    - Clickjacking 
+                    - Requêtes silencieuses 
+                - CSRF 
+                - SQLI 
+                - Point d'eau 
 - Sécurité backend
     - RBAC 
     - DDOS (Deni de service) 
@@ -39,11 +43,6 @@
         - SHA256 
             - Hashage
             - Salage  
-    - Sécurisation authentification
-        - JWT
-        - Token
-        - Session
-        - UUID
     - Sécurisation API 
     - Stratégie de sauvegarde 
     - Strict mode 
@@ -191,10 +190,34 @@ C'est pourquoi la sanitisation côté back-end doit être mise en place, afin d'
 
 La sanitisation est un point essentiel, c'est pourquoi elle sera mise en place dans ce projet.<br>
 
+## Authentification
+
 ## Cookies
 
 Les cookies sont connotés de façon négatives par la plupart des utilisateurs car souvent présentés sous-forme de pop-ups génantes, demandant à l'utilisateur leurs autorisations afin de sauvegarder les préférences utilisateurs.<br>
 Cependant les cookies sont très utiles pour stocker des informations concernant le compte d'un utilisateur, afin de ne pas forcer l'utilisateur à se reconnecter au site à chaque visite.<br>
-Cependant, il existe des problèmes au niveau de la sécurité concernant les cookies, en effet, les failles de type XSS permettent la récupération des cookies contenues sur une page Web, c'est pourquoi il devient très décommandé d'utiliser simplement les cookies en guise de preuve de confiance.<br>
+Cependant, il existe des problèmes au niveau de la sécurité concernant les cookies, en effet, les failles de type CSRF permettent la récupération des cookies contenues sur une page Web, c'est pourquoi il devient très décommandé d'utiliser simplement les cookies en guise de preuve de confiance.<br>
 Dans la plupârt des cas ou la sécurité prime, le cookie n'est enfaite qu'une partie du stockage de la session d'un utilisateur.<br>
-Il existe des alternatives afin de ne pas rendre le compte d'un utilisateur complétement vulnérable en cas d'attaque par le biais de XSS, ne les verrons un peu plus tard.<brs>
+Il existe des alternatives afin de ne pas rendre le compte d'un utilisateur complétement vulnérable en cas d'attaque par le biais de CSRF.<brs>
+
+## Token (Jeton)
+
+Le Token ou Jeton est enfaite un moyen d'authentifier un utilisateur sur un système donné.
+Il existe 2 types de Token :
+
+- Le hardware Token (Jeton Materiel)
+
+Le jeton materiel est un jeton tangible permettant l'authentification d'un utilisateur sur un système, il peut-être représenté par une clé USB ou tout autre peripherique permettant un stockage d'informations.<br>
+
+- Le software Token (Jeton Logiciel)
+
+Le jeton logiciel quant à lui est un jeton non physique pouvant être stocké sur n'importe quel appareil tel qu'un ordinateur, un telephone portable et bien d'autres encore.
+
+## JWT (JSON Web Token)
+
+Le JWT est tout simplement un Token sous forme de JSON permettant l'authentification d'un utilisateur sur un site Web.<br>
+De part sa structure, il est préférable à l'utilisation des cookies par exemple, en effet, il est possible de découper le Jeton JWT en plusieurs parties afin de répartir les différentes informations en plusieurs endroit, et c'est en ça que le JWT est préférable à la simple utilisation d'un cookie.<br>
+Le cookie était lui très vulnérable aux attaques CSRF, un attaquant pourrait facilement récupérer le cookie de connexion d'un utilisateur et usurper l'accès au compte récupérer.<br>
+Avec le JWT ceci n'est plus possible si la mise en place du stockage du jeton suit quelques principes.<br>
+La répartition du JWT dans les cookies et dans le localStorage.<br>
+En effet, il est possible de séparer le payload du JWT et le JWT en lui même, de cette façon, on peut imaginer le scénario suivant, selon lequel le payload sera stocké dans le localStorage et le JWT dans les cookies, de façon, un attaquant récupérant les cookies n'aura qu'une partie du Jeton mais pas l'autre et inversement.<br>
