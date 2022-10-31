@@ -22,8 +22,6 @@
     - SRI 
     - Sanitisation 
     - Cookies 
-    - Tokens 
-    - Session 
     - Authentification 
         - Failles relatives :
             - XSS 
@@ -41,7 +39,11 @@
         - SHA256 
             - Hashage
             - Salage  
-    - Sécurisation authentification 
+    - Sécurisation authentification
+        - JWT
+        - Token
+        - Session
+        - UUID
     - Sécurisation API 
     - Stratégie de sauvegarde 
     - Strict mode 
@@ -180,3 +182,9 @@ Lors de l'import de bootsrap un développeur importe la nouvelle version afin de
 Et par la même occasion se munie du hash de cette dernière afin de vérifier que le code correspond bien au hash.<br>
 Si c'est le cas, pas de soucis, la version est bonne et n'a subie aucune modification, sinon, la ressource ne correspond pas
 au contenu importé, on n'utilisera pas cette ressource puis-ce que potentiellement dangereuse.<br>
+
+## Sanitisation
+
+La sanitisation est une solution permettant de nettoyer la donnée entrée par l'utilisateur, afin de ne pas permettre à un utilisateur d'entrer de chiffre dans un champ prévu pour un nom par exemple.<br>
+Il existe une sanitisation côté front-end et côté back-end, la solution de sanitisation côté front-end est un premier rempart mais trop peu suffisant, avec la sanitisation côté front-end, il est possible de nettoyer l'information entrée par un utilisateur lambda, mais pour quelqu'un d'experimenté, il est assez aisé de supprimer la sanitisation côte front-end.<br>
+C'est pourquoi la sanitisation côté back-end doit être mise en place, afin d'être assuré que les informations entrées sont conformes aux attentes et seront traitables.<br>
