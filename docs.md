@@ -292,3 +292,9 @@ Dans le pire des cas avec un ORM bien configuré mais sans la gestion d'erreur r
 
 Le principe d'attaque par point d'eau consiste à infecter des machines par voie de RAT (Remote Admin Tool / Remote Access Trojan) par le biais de failles diverses telles que peuvent l'être des failles XSS dans le cadre d'un point d'eau dont l'infiltration se ferais pas le Web.<br>
 Le but du point d'eau est d'attendre qu'une proie morde à l'hameçon afin de l'infecter et d'infecter tout son entourage numérique par le biais de diverses moyens, mails, infiltration au niveau du réseau, le but était bien evidemment d'infecter un maximum de machines afin de récupérer de l'information ou bien simplement d'ériger un BotNet, il existe tout un tas de déclinaison d'utilisation de point d'eau, de façons de faire, de raison d'utilisation.<br>
+
+# Sécurité niveau Back-end
+
+# RBAC (Role Based Access Control)
+
+La mise en place d'une stratégie basé sur RBAC (Controle d'Accès Basé sur les Rôles).<br>
