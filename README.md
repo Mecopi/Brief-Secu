@@ -221,3 +221,10 @@ Le cookie était lui très vulnérable aux attaques CSRF, un attaquant pourrait 
 Avec le JWT ceci n'est plus possible si la mise en place du stockage du jeton suit quelques principes.<br>
 La répartition du JWT dans les cookies et dans le localStorage.<br>
 En effet, il est possible de séparer le payload du JWT et le JWT en lui même, de cette façon, on peut imaginer le scénario suivant, selon lequel le payload sera stocké dans le localStorage et le JWT dans les cookies, de façon, un attaquant récupérant les cookies n'aura qu'une partie du Jeton mais pas l'autre et inversement.<br>
+
+## Les sessions
+
+Une session n'est ni plus ni moins régie par le temps d'expiration d'un cookie ou d'un token dans notre cas, une session va être utile dans le cas ou l'on veut qu'un utilisateur n'ait pas besoin de se reconnecter à notre site.<br>
+Lors de la connexion d'un utilisateur, un jeton avec une date d'expiration lui est transmis, l'utilisateur pourra quitter et revenir sur le site sans avoir besoin de se connecter tant que son jeton n'a pas expiré, cependant, une fois le jeton révolu, l'utilisateur devra se ré-authentifier afin d'obtenir un nouveau jeton.<br>
+
+Dans le cadre de ce projet, les sessions seront à temps limité, les sessions expireront après 1 heure.
