@@ -128,6 +128,55 @@ HSTS signifie HTTP Strict Transport Security.<br>
 Cependant en cas d'utilisation d'HSTS il est fortement recommandé de vérifier les dates d'expiration des certificats SSL/TLS fournissant l'accès au protocol HTTPS, en effet, en cas d'oubli de renouvellement du certificat, l'utilisation d'HSTS empêchera l'entiereté des visiteurs à consulter votre site.<br>
 Aussi il existe une vulnérabilité lors de la première visite d'un site utilisant HSTS, en effet, HSTS ne prends pas en compte la première visite d'un utilisateur lors de sa première visite, c'est à dire qu'il existe un risque minime qu'un utilisateur soit victime d'une attaque par MITM, il existe cependant un moyen de rémédier à cette vulnérabilité.<br>
 
+Dans le cadre du projet de la Mission Locale ce mechanisme sera mis en place.<br>
+
 ## HSTS Preload
 
 HSTS Preload est enfaite un registre contenant une liste de domaine, permettant aux navigateurs d'enregistrés les domaines au HSTS préalablement à la première visite d'un utilisateur, de ce fait, tout domaine enregistré dans le Preload est garantit d'être connu du navigateur et par la même occasion de ne plus souffrir de cette vulnérabilité lors de la première visite d'un utilisateur.<br>
+
+Dans le cadre du projet de la Mission Locale, le domaine sera enregistré au Preload.<br>
+
+# Sécurité côté Navigateur
+
+## SOP (Same Origin Policy)
+
+La politique de même origin est une sécurité mise en place par défaut par le navigateur,<br>
+cette politique permet de définir que l'origin sur laquelle vous vous trouvez sera en quelques sortes cloisonnée,<br>
+et sera hermétique aux autres origin se trouvant sur le Web, avec SOP votre origin ne pourra pas échanger de ressources<br>
+avec les autres origins se trouvant sur le Web, il existe cependant quelques exceptions telles que les images et les iframes.<br>
+
+Dans le cadre de ce projet, SOP ne sera pas utilsé puis-ce qu'il semble nécessaire d'échanger des ressources avec les partenaires de la Mission Locale.<br>
+
+## CORS (Cross Origin Ressources Sharing)
+
+Cross Origin Ressources Sharing (CORS) ou Partage de Ressources Inter-Origin est une sécurité permettant d'échanger des ressources<br>
+entre différentes origins, de cette façons, il sera possible de récupérer des informationss sur des sites partenaires, cependant grace à CORS il est possible d'établir une liste de domaine avec lesquels échanger des informations.<br>
+Pour qu'un échange de données entre origin puisse avoir lieu avec CORS, il est nécessaire que les 2 domaines acceptent l'échange l'un avec l'autre, sans quoi l'échange de donnée n'aura pas lieu.<br>
+
+Dans le cadre du projet de la Mission Locale, CORS sera mis en place afin d'échanger des contenus provennant de partenaires.<br>
+
+## CSP (Content Security Policy)
+
+La Politique de Sécurité du Contenu (CSP) est une politique mise en place par le navigateur,<br>
+grace à CSP il est possible de dresser une liste de ressources dont l'execution sera authoriser,<br>
+a l'inverse si une ressource importée d'un autre domaine par le biais de CORS ne se trouvant pas dans la liste de CSP,<br>
+cette dernière verrait son importation ou son execution bloquée par le navigateur afin de prévenir l'injection de code par exemple.<br>
+De ce fait, CSP permet d'endiguer en partie les failles de type XSS, cependant, CSP ne représente pas une contre-mesure suffisante à ce type de faille et ne doit donc pas se substituer à de bonnes pratiques en matière de développement.<br>
+
+Dans le cadre de ce projet, CSP sera mis en place et configuré de façons à être le plus optimale possible.<br>
+
+## SRI (SubRessources Integrity)
+
+SRI est un système de vérification de l'Intégrité des Sous-Ressources, c'est à dire que grace à SRI il est possible de vérifier si une ressource est intègre ou non.<br>
+
+Lors ce que nous allons importer des ressources, il peut-être intéressant d'avoir un moyen de vérifier que les dites-ressources correspondent effectivement à ce pour quoi elles ont étées prévues.<br>
+Par exemple, lors d'import de library externe telles que Bootstrap, il est utile de vérifier que la librairie bootstrap importait correspond effectivement à ce dont elle doit correspondre.<br>
+La vérification de l'intégrité d'une ressource se fait par le biais du Hashage, le principe est simple :<br>
+
+Les développeurs de Bootstrap dévellopent une nouvelle version.<br>
+Ils hash le fichier bootsrap.min.css, il récupèrent leur version du code sous forme de hash.<br>
+Ils postent la nouvelle version de boostrap.min.css puis postent le hash.<br>
+Lors de l'import de bootsrap un développeur importe la nouvelle version afin de l'utiliser sur son site.<br>
+Et par la même occasion se munie du hash de cette dernière afin de vérifier que le code correspond bien au hash.<br>
+Si c'est le cas, pas de soucis, la version est bonne et n'a subie aucune modification, sinon, la ressource ne correspond pas
+au contenu importé, on n'utilisera pas cette ressource puis-ce que potentiellement dangereuse.<br>
