@@ -190,7 +190,7 @@ C'est pourquoi la sanitisation côté back-end doit être mise en place, afin d'
 
 La sanitisation est un point essentiel, c'est pourquoi elle sera mise en place dans ce projet.<br>
 
-## Authentification
+# Authentification
 
 ## Cookies
 
@@ -234,3 +234,34 @@ Dans le cadre de ce projet, les sessions seront à temps limité, les sessions e
 Un UUID est un identifiant unique délivré par le serveur pour chaque utilisateur ayant besoin d'un enregistrement en base de donnée.<br>
 A l'inverse d'un simple ID pouvant être composé de caractères numériques allant de 0 à 9, l'UUID se compose d'un ensemble de caractère litteraux et numérique comme suit : 863cebfd-7875-45af-9e83-cd1e43aa1be4 <br>
 De cette façon, il n'est pas envisageable qu'un attaquant puisse faire appelle à la base de donnée afin d'en récupérer les informations par le biais du champ 'ID' puis-ce qu'il faudrait être incroyablement chanceux pour tomber sur un UUID identique.<br>
+
+Dans le cadre de ce projet et en raison du niveau de sécurité qu'apporte la solution UUID comparativement à sa non-uitlisation, UUID sera utilisé.<br>
+
+# Failles relatives
+
+## La faille XSS (Cross Site Scripting)
+
+La faille XSS est une faille majeure, l'utilisation de faille XSS consiste à injecter du code malveillant d'un site vers un autre afin de récupérer les informations de connexion de l'utilisateur par exemple.<br>
+L'utilisation de faille XSS peut-être dévastatrice et de nombreuses pratiques frauduleuses peuvent en découller.<br>
+Prenons un exemple d'utilisation de faille XSS: 
+
+Un utilisateur nommé Gérard reçoit un mail provenant de sa banque lui indiquant un besoin de rectification,<br>
+Gérard clique alors sur ce lien, malheureusement, il est déjà trop tard.<br>
+L'emetteur de ce mail frauduleux avait glissé du code malveillant dans ce lien par le biais d'une faille XSS inconnue sur le site de la banque de Gérard, l'attaquant à alors été en mesure de faire éxécuter du code malveillant au site de la banque de Gérard, l'attaquant à reidiriger Gérard par le biais d'un lien récupérant ses cookies de connexion à sa banque, l'attaquant à récupérer le cookie de connexion de Gérard et a maintenant la possibilité de se connecter au compte de ce dernier.<br>
+
+La plupart du temps, les attaques XSS si elles sont bien faites ne sont même pas visibles par la vicitime.<br>
+
+Il existe des possibilités infinies quant à l'exploitation de faille XSS tels que :
+
+- Requêtes silencieuses<br>
+    Les requêtes silencieuses sont un moyen d'appeler certaines pages sur le Web sans qu'un utilisateur s'en apercoivent.<br>
+    Exemple d'exploitation de requêtes silencieuses, nous reprenxrons notre ami Gérard :<br>
+        L'attaquant à placer du code effectuant une requête silencieuse afin de demander à une page de tracage d'effectuer un tracage sur la page actuelle,<br> la page récupère alors le cookie de connexion de Gérard à sa banque et l'attaquant n'a plus qu'à récupérer ce cookie,<br> Gérard ne s'est rendu compte de rien, la requête étant silencieuse, <br>il peut continuer sa navigation sans le moindre soucis mais surtout sans s'être rendu compte qu'il venait de donner l'accès à son compte bancaire à un tiers.
+
+- Le clickjacking
+    Le clickjacking est une pratique consistant à remplacer le contenu d'un site Web légitime par un contenu frauduleux.<br>
+    Exemple d'exploitation de clickjacking, nous reprendrons notre ami Gérard :<br>
+        Gérard est assez chanceux, sa banque à mis en place un système d'authentification par JWT et donc l'attaquant n'a qu'une partie de son jeton d'authentification, il n'ira pas bien loin avec ceci.<br>
+        Cependant, l'attaquant à placer du code malveillant afin de remplacer le formulaire de connexion au site de la banque de Gérard resemblant trait pour trait,<br> Gérard entre ses informations de connexion et les valides, le formulaire envoi un mail à l'attaquant avec les informations de connexino de Gérard et Gérard et reconduit sur la page de son compte en banque.
+
+Il est très important de développer avec précautions afin d'éviter les failles de type XSS (Cette faille mériterait elle aussi une documentation à part entière).<br>
