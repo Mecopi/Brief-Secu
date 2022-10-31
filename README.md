@@ -202,7 +202,7 @@ Il existe des alternatives afin de ne pas rendre le compte d'un utilisateur comp
 
 ## Token (Jeton)
 
-Le Token ou Jeton est enfaite un moyen d'authentifier un utilisateur sur un système donné.
+Le Token ou Jeton est enfaite un moyen d'authentifier un utilisateur sur un système donné.<br>
 Il existe 2 types de Token :
 
 - Le hardware Token (Jeton Materiel)
@@ -265,3 +265,7 @@ Il existe des possibilités infinies quant à l'exploitation de faille XSS tels 
         Cependant, l'attaquant à placer du code malveillant afin de remplacer le formulaire de connexion au site de la banque de Gérard resemblant trait pour trait,<br> Gérard entre ses informations de connexion et les valides, le formulaire envoi un mail à l'attaquant avec les informations de connexino de Gérard et Gérard et reconduit sur la page de son compte en banque.
 
 Il est très important de développer avec précautions afin d'éviter les failles de type XSS (Cette faille mériterait elle aussi une documentation à part entière).<br>
+
+## L'attaque par CSRF (Cross Site Request Forgery)
+
+L'attaque par CSRF ou Forge de Requête par site interposés est un type d'attaque semblable à une attaque par XSS, le but de l'attaque par CSRF est enfaite d'executer des actions sur un site Web légitime à l'insu de l'utilisateur, poster un message sur un forum par exemple, il est aussi possible de récupérer les informations de connexion de l'utilisateur par le biais d'attaque CSRF.<br>
