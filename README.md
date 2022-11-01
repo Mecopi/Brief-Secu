@@ -57,7 +57,8 @@ de ces éléments participent activement à la sécurité générale du système
 
 # Réduction de la surface d'attaque<a id='reduction_surface'></a>
 
-La réduction de la surface d'attaque est un principe de sécurité selon lequel toutes les parties d'une application ou d'un système non necessairement exposables seront isolées.<br>
+La réduction de la surface d'attaque est un principe de sécurité selon lequel toutes les parties d'une application <br>
+ou d'un système non necessairement exposables seront isolées.<br>
 C'est à dire que chaque partie du système ou de l'application dont l'exposition peut être réduite doit l'être.<br>
 
 Dans le cadre de ce projet, l'exposition réseau pourrait se limiter à : <br>
@@ -70,13 +71,15 @@ Dans le cadre de ce projet, l'exposition réseau pourrait se limiter à : <br>
 
 # Moidre privilèges<a id='moindre_privileges'></a>
 
-Le principe de moindre privilèges consiste à restreindre les permissions d'un élément aux permissions strictement nécessaires à son bon fonctionnement.<br>
+Le principe de moindre privilèges consiste à restreindre les permissions d'un élément aux permissions <br>
+strictement nécessaires à son bon fonctionnement.<br>
 Par exemple, si un composant doit simplement lire un flux de donnée, nous autoriserons ce composant à lire mais sans lui permettre d'écrire dans les flux qu'il sera amené à lire.<br>
 
 # RBAC (Role Based Access Control)<a id='rbac'></a>
 
-La mise en place d'une stratégie basée sur RBAC (Controle d'Accès Basé sur les Rôles) découle directement du principe de<br>
-moindre privilèges, en effet grace à la stratégie RBAC, il est possible de définir des rôles afin d'octroyer certaines permissions à certains utilisateur.<br>
+La mise en place d'une stratégie basée sur RBAC (Controle d'Accès Basé sur les Rôles)<br>
+découle directement du principe de moindre privilèges, en effet grace à la stratégie RBAC,<br>
+il est possible de définir des rôles afin d'octroyer certaines permissions à certains utilisateur.<br>
 
 Dans le cadre de ce projet, les rôles suivants seront potentiellement mis en place :<br>
 
@@ -108,26 +111,30 @@ Dans le cadre de ce projet, le protocol que nous utiliserons sera le HTTPS<br>
 
 # TLS <a id='tls'></a>
 
-Le protocol TLS est un protocol visant à encapsuler l'information et à la chiffrer par le biais d'opérations cryptographiques.<br>
+Le protocol TLS est un protocol visant à encapsuler l'information<br> 
+et à la chiffrer par le biais d'opérations cryptographiques.<br>
 TLS signifie Transport Layer Security ou en français Sécurité de la Couche de Transport.<br>
-TLS permet de chiffrer les données émises dans un contexte d'échange type Client -> Serveur afin d'empêcher la compromission des données transitantes sur la couche réseau.<br>
-Dans le cadre de l'utilisation de TLS le serveur est nécessairement authentifié, alors qu'il existe certaines fonctions permettant l'identification du client si besoin est.<br>
+TLS permet de chiffrer les données émises dans un contexte d'échange type Client -> Serveur afin d'empêcher la compromission des données transitantes sur la couche réseau.<br><br>
+Dans le cadre de l'utilisation de TLS le serveur est nécessairement authentifié, alors qu'il existe certaines fonctions permettant l'identification du client si besoin est.<br><br>
 Notons aussi que TLS est l'une des solutions préférées dans la protection de flux réseau.<br>
 Lors de l'utilsation de TLS, les messages sont généralement transmis par l'intermediaire du protocol TCP.<br>
 <a href="https://www.ssi.gouv.fr/uploads/2020/03/anssi-guide-recommandations_de_securite_relatives_a_tls-v1.2.pdf">Afin d'en apprendre beaucoup plus sur TLS</a>
 
 # HSTS<a id='hsts'></a>
 
-HSTS est un méchanisme visant à effectuer des redirections de requêtes utilisant le protocol HTTP vers un protocol sécurisé tel que HTTPS afin d'éviter la communication par le biais d'un protocol non sécurisé tel qu'HTTP.<br>
+HSTS est un méchanisme visant à effectuer des redirections de requêtes utilisant le protocol HTTP vers un protocol sécurisé tel que HTTPS afin d'éviter la communication par le biais d'un protocol non sécurisé tel qu'HTTP.<br><br>
 HSTS signifie HTTP Strict Transport Security.<br>
-Cependant en cas d'utilisation d'HSTS il est fortement recommandé de vérifier les dates d'expirations des certificats SSL/TLS fournissant l'accès au protocol HTTPS, en effet, en cas d'oubli de renouvellement du certificat, l'utilisation d'HSTS empêchera les visiteurs de consulter le site.<br>
+Cependant en cas d'utilisation d'HSTS il est fortement recommandé de vérifier les dates d'expirations des certificats SSL/TLS fournissant l'accès au protocol HTTPS, en effet, en cas d'oubli de renouvellement du certificat, l'utilisation d'HSTS empêchera les visiteurs de consulter le site.<br><br>
 Aussi il existe une vulnérabilité lors de la première visite d'un site utilisant HSTS, en effet, HSTS ne prends pas en compte la première visite d'un utilisateur, c'est à dire qu'il existe un risque minime qu'un utilisateur soit victime d'une attaque par MITM, il existe cependant un moyen de rémédier à cette vulnérabilité.<br>
 
 Dans le cadre du projet de la Mission Locale ce mechanisme sera mis en place.<br>
 
 # HSTS Preload<a id='hsts_preload'></a>
 
-HSTS Preload est enfaite un registre contenant une liste de domaine, permettant aux navigateurs d'enregistrer les domaines au HSTS préalablement à la première visite d'un utilisateur, de ce fait, tout domaine enregistré dans le Preload est garanti d'être connu du navigateur et par la même occasion de ne plus souffrir de cette vulnérabilité lors de la première visite d'un utilisateur.<br>
+HSTS Preload est enfaite un registre contenant une liste de domaine,<br> 
+permettant aux navigateurs d'enregistrer les domaines au HSTS préalablement à la première visite d'un utilisateur<br>
+de ce fait, tout domaine enregistré dans le Preload est garanti d'être connu du navigateur<br>
+et par la même occasion de ne plus souffrir de cette vulnérabilité lors de la première visite d'un utilisateur.<br>
 
 Dans le cadre du projet de la Mission Locale, le domaine sera enregistré au Preload.<br>
 
@@ -137,7 +144,8 @@ Dans le cadre du projet de la Mission Locale, le domaine sera enregistré au Pre
 
 La Politique de Même Origine est une sécurité mise en place par défaut par le navigateur,<br>
 cette politique permet de définir que l'origine sur laquelle vous vous trouvez sera en quelque sorte cloisonnée,<br>
-et sera hermétique aux autres origines se trouvant sur le Web, avec SOP votre origine ne pourra pas échanger de ressources<br>
+et sera hermétique aux autres origines se trouvant sur le Web,<br>
+avec SOP votre origine ne pourra pas échanger de ressources
 avec les autres origines se trouvant sur le Web, il existe cependant quelques exceptions telles que les images et les iframes.<br>
 
 Dans le cadre de ce projet, SOP ne sera pas utilisé puis-ce qu'il semble nécessaire d'échanger des ressources avec les partenaires de la Mission Locale.<br>
